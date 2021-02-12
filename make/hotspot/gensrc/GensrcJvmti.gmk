@@ -65,8 +65,8 @@ define SetupXslTransformBody
       INFO := Generating jvmti file $1, \
       DEPS := $$($1_XML_FILE) $$($1_XSL_FILE) $$($1_DEPS) $$(BUILD_JVMTI_TOOLS), \
       OUTPUT_FILE := $$($1_OUTPUT_FILE), \
-      COMMAND := $$(TOOL_JVMTI_GEN) -IN $$($1_XML_FILE) \
-          -XSL $$($1_XSL_FILE) -OUT $$($1_OUTPUT_FILE) $$($1_ARGS), \
+      COMMAND := cat $$($1_XML_FILE); cat $$($1_XSL_FILE); $$(TOOL_JVMTI_GEN) -IN $$($1_XML_FILE) \
+          -XSL $$($1_XSL_FILE) -OUT $$($1_OUTPUT_FILE) $$($1_ARGS); cat $$($1_OUTPUT_FILE), \
   ))
 
   TARGETS += $$(jvmti_gen_$1_TARGET)
